@@ -1,0 +1,44 @@
+body {
+    background: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+span.varS { color: blue; font-weight: 800;}
+span.varE { color: orange; font-weight: 800;}
+span.varI { color: red; font-weight: 800;}
+span.varR { color: green; font-weight: 800;}
+path.varS { stroke: blue; stroke-width: 2; fill: none; }
+path.varE { stroke: orange; stroke-width: 2; fill: none; }
+path.varI { stroke: red; stroke-width: 2; fill: none; }
+path.varR { stroke: green; stroke-width: 2; fill: none; }
+/* span.plot-control { display: inline-block; margin: 1em;} */
+span.plot-control { display: block; margin: 0.7em;}
+input[type=range] { width: 25em; display: inline-block; vertical-align: middle; }
+/* h2 { text-align: center; } */
+h2 { text-align: center; }
+#model-params h2 { text-align: left; padding-left: 1.5rem; }
+#legend { text-align: right; width: 30vw; margin: 0 auto; float: right; margin-right: 30px;}
+#model-eqns { float: left; width: 35%; margin-left: 50px;}
+#model-params { float: right; width: 60%; }
+#plot { clear: both; padding-bottom: 2em; float: left;}
+#plot svg { width: 65vw; height: 40vh; margin: 0 auto; display: block; }
+.axis { stroke: black; stroke-linecap: round; }
+#diagram { text-align: center; padding-bottom: 2em; }
+#diagram img { width: 25em; }
+
+#model-container { width: 80vw; text-align: center; margin: 0 auto;}
+#model-container > div { text-align: left;}
+#model-container #model-eqns { width: auto; padding-right: 1em; display: inline-block; float: left; vertical-align: top; }
+#model-container #model-params { width: auto; padding-left: 1em; display: inline-block; float: right; vertical-align: top; }
+
+
+.outer {
+    width: 100vw;
+    margin-bottom: 350px;
+}
+#background img {
+    width: 100vw;
+    margin-left: -8px;
+    margin-bottom: -11px;
+}

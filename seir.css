@@ -39,6 +39,9 @@ h2 { text-align: center; }
 }
 #background img {
     width: 100vw;
-    margin-left: -8px;
+    /* margin-left: -8px; */
+    left: 0;
     margin-bottom: -11px;
+    bottom: 0;
+    position: absolute;
 }

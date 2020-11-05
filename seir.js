@@ -102,6 +102,7 @@ SIR.plot = function(plot_id, ctrl_id, param_vals) {
     plot.svg = d3.select(plot_id).append('svg');
 
     var svg_rect = plot.svg.node().getBoundingClientRect();
+    var margin_line;
     plot.width = svg_rect.width;
     plot.height = svg_rect.height;
     plot.margin = {
@@ -269,6 +270,18 @@ SIR.plot = function(plot_id, ctrl_id, param_vals) {
 
         // Remove existing data series.
         plot.svg.selectAll('path.series').remove();
+        plot.svg.selectAll(".lockdown").remove();
+        margin_line = plot.x_range(plot.params.lockdown);
+
+        plot.svg.append("line")
+            .attr("x1", margin_line)  
+            .attr("y1", plot.margin.top)
+            .attr("x2", margin_line)  
+            .attr("y2", plot.height - plot.margin.bottom)
+            .attr("class", "lockdown")
+            .style("stroke-width", 1)
+            .style("stroke", "black")
+            .style("fill", "none");
 
         plot.svg.append('svg:path')
             .attr('d', plot.draw_line(output.s))

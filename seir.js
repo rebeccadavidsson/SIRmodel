@@ -1,7 +1,7 @@
 // Create a namespace to contain all of the variables and functions.
 var SIR = SIR || {};
 
-SIR.solve = function(popn, s_frac, R0, lat_durn, inf_durn, res_durn, eta, n) {
+SIR.solve = function(popn, s_frac, lockdown, R0, lat_durn, inf_durn, res_durn, eta, n) {
     var s = new Float64Array(n + 1),
         e = new Float64Array(n + 1),
         i = new Float64Array(n + 1),
@@ -10,6 +10,11 @@ SIR.solve = function(popn, s_frac, R0, lat_durn, inf_durn, res_durn, eta, n) {
     e[0] = 1.0 / popn;
     i[0] = 0.0;
     r[0] = Math.max(0.0, 1.0 - s[0] - e[0] - i[0]);
+
+    // var R_0 = function() {
+    //     if lockdown <
+    // }
+
     var beta = R0 / inf_durn;
 
     var s_to_e = function(s, e, i, r) {
@@ -34,6 +39,7 @@ SIR.solve = function(popn, s_frac, R0, lat_durn, inf_durn, res_durn, eta, n) {
     // Index variable for several loops, below.
     var ix;
     for (ix = 0; ix < n; ix++) {
+        
         // Integrate using forward Euler, enforces an upper bound on dt.
         var sub_steps = 10;
         var dt = 1.0 / sub_steps;
@@ -41,6 +47,14 @@ SIR.solve = function(popn, s_frac, R0, lat_durn, inf_durn, res_durn, eta, n) {
             e_pr = e[ix],
             i_pr = i[ix],
             r_pr = r[ix];
+
+        if (lockdown < ix) {
+            beta = R0 / inf_durn;
+        }
+        else {
+            beta = R0 + 0.07 / inf_durn;
+        }
+
         for (var j = 0; j < sub_steps; j++) {
             var to_e = dt * s_to_e(s_pr, e_pr, i_pr, r_pr);
             var to_i = dt * e_to_i(s_pr, e_pr, i_pr, r_pr);
@@ -103,6 +117,7 @@ SIR.plot = function(plot_id, ctrl_id, param_vals) {
     plot.params = {};
     plot.params.popn = 100000;
     plot.params.susc_frac = 1.0;
+    plot.params.lockdown = 40;
     plot.params.R0 = 1.4;
     plot.params.lat_durn = 0.5;
     plot.params.inf_durn = 2.0;
@@ -178,6 +193,7 @@ SIR.plot = function(plot_id, ctrl_id, param_vals) {
         var output = SIR.solve(
             plot.params.popn,
             plot.params.susc_frac,
+            plot.params.lockdown,
             plot.params.R0,
             plot.params.lat_durn,
             plot.params.inf_durn,

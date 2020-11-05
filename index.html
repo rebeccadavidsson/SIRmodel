@@ -51,6 +51,11 @@
     <div id="model-params">
       <!-- <h4>Parameters</h4> -->
       <span class="plot-control">
+        <input id="lockdown" type="range" min="0" max="0" />
+        <label for="lockdown">Days before lockdown<sub></sub>:</label>
+        <span class="show_value"></span>
+      </span>
+      <span class="plot-control">
         <input id="R0" type="range" min="0" max="0" />
         <label for="R0">R<sub>0</sub>:</label>
         <span class="show_value"></span>
@@ -101,6 +106,7 @@
     <script type="text/javascript" src="seir.js" charset="utf-8"></script>
     <script type="text/javascript">
       var param_vals = {
+        lockdown: [{ value: 10 }, { value: 20 }, { value: 30 },{ value: 40 }, { value: 50 }, { value: 60,  default: true }, { value: 70 }, { value: 80 }, { value: 90 }, { value: 100 }],
           n_days: [{value: 90}, {value: 180}, {value: 365, default: true}],
           y_max: [{value: 5}, {value: 10}, {value: 15}, {value: 20},
                   {value: 25}, {value: 30}, {value: 35}, {value: 40},
@@ -112,11 +118,11 @@
                {value: 1.4, default: true}, {value: 1.6}, {value: 1.8},
                {value: 2.0}, {value: 2.5}, {value: 3.0}, {value: 4.0},
                {value: 5.0}, {value: 10.0}],
-          lat_durn: [{value: 0.5, label: '½ day', default: true},
+          lat_durn: [{value: 0.5, label: '½ day'},
                      {value: 1.0, label: '1 day'},
                      {value: 2.0, label: '2 days'},
                      {value: 4.0, label: '4 days'},
-                     {value: 7.0, label: '1 week'},
+                     {value: 7.0, label: '1 week', default: true},
                      {value: 14.0, label: '2 weeks'}],
           inf_durn: [{value: 0.5, label: '½ day'},
                      {value: 1.0, label: '1 day'},

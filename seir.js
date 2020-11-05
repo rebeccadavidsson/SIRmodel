@@ -11,9 +11,7 @@ SIR.solve = function(popn, s_frac, lockdown, R0, lat_durn, inf_durn, res_durn, e
     i[0] = 0.0;
     r[0] = Math.max(0.0, 1.0 - s[0] - e[0] - i[0]);
 
-    // var R_0 = function() {
-    //     if lockdown <
-    // }
+ 
 
     var beta = R0 / inf_durn;
 
@@ -52,7 +50,7 @@ SIR.solve = function(popn, s_frac, lockdown, R0, lat_durn, inf_durn, res_durn, e
             beta = R0 / inf_durn;
         }
         else {
-            beta = R0 + 0.07 / inf_durn;
+            beta = R0 - 0.07 / inf_durn;
         }
 
         for (var j = 0; j < sub_steps; j++) {

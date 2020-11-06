@@ -176,6 +176,43 @@ SIR.plot = function(plot_id, ctrl_id, param_vals) {
         });
     };
 
+    plot.svg.append('svg:rect') // append a rect to catch mouse movements on canvas
+        .attr('width', plot.width - plot.margin.left - plot.margin.top) // can't catch mouse events on a g element
+        .attr('height', plot.height - plot.margin.bottom - plot.margin.top)
+        .attr("transform", "translate(" + plot.margin.left + "," + plot.margin.top + ")")
+        .attr('fill', 'none')
+        .attr('pointer-events', 'all')
+        // .on('mouseout', function () { // on mouse out hide line, circles and text
+        //     d3.select(".mouse-line")
+        //         .style("opacity", "0");
+        //     d3.selectAll(".mouse-per-line circle")
+        //         .style("opacity", "0");
+        //     d3.selectAll(".mouse-per-line text")
+        //         .style("opacity", "0");
+        // })
+        // .on('mouseover', function () { 
+        //     console.log("hihi");
+        //     d3.select(".lockdown")
+        //         .style("opacity", "1");
+            // d3.selectAll(".mouse-per-line circle")
+            //     .style("opacity", "1");
+            // d3.selectAll(".mouse-per-line text")
+            //     .style("opacity", "1");
+        // })
+        .on('mousemove', function () { // mouse moving over canvas
+            var mouse = d3.mouse(this);
+            d3.select(".lockdown")
+                .attr("d", function () {
+                    if (mouse[0] > 0 && mouse[0] < 365 * 2) {
+                        plot.params.lockdown = mouse[0] / 2
+                        plot.update();
+                    }
+                });
+        });
+
+
+    // plot.svg.on("mouseover", function () { handleMouseOver(d3.mouse(this)[0])});
+
     plot.ctrls.selectAll('select').each(set_param(false));
     plot.ctrls.selectAll('input').each(set_param(false));
 

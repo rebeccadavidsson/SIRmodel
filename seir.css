@@ -1,7 +1,8 @@
 body {
-    background: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   background: rgb(255,255,255);
+background: linear-gradient(177deg, rgba(255,255,255,0.9711038712359944) 62%, rgba(195,195,195,0.9938239944415266) 100%);    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 13px;
+    height: 100vh;
 }
 
 span.varS { color: blue; font-weight: 800;}
@@ -18,16 +19,16 @@ input[type=range] { width: 25em; display: inline-block; vertical-align: middle; 
 /* h2 { text-align: center; } */
 h2 { text-align: center; }
 #model-params h2 { text-align: left; padding-left: 1.5rem; }
-#legend { text-align: right; width: 30vw; margin: 0 auto; float: right; margin-right: 30px;}
+#legend { text-align: left;  margin: 0 auto; float: left; width: 50vw; }
 #model-eqns { float: left; width: 35%; margin-left: 50px;}
-#model-params { float: right; width: 60%; }
+#model-params { float: right; width: 35vw; margin-right: 20px; margin-top: -100px;}
 #plot { clear: both; padding-bottom: 2em; float: left;}
-#plot svg { width: 65vw; height: 40vh; margin: 0 auto; display: block; }
+#plot svg { width: 55vw; height: 40vh; margin: 0 auto; display: block; }
 .axis { stroke: black; stroke-linecap: round; }
 #diagram { text-align: center; padding-bottom: 2em; }
 #diagram img { width: 25em; }
 
-#model-container { width: 80vw; text-align: center; margin: 0 auto;}
+#model-container { width: 90vw; text-align: center; margin: 0 auto;}
 #model-container > div { text-align: left;}
 #model-container #model-eqns { width: auto; padding-right: 1em; display: inline-block; float: left; vertical-align: top; }
 #model-container #model-params { width: auto; padding-left: 1em; display: inline-block; float: right; vertical-align: top; }
@@ -36,6 +37,9 @@ h2 { text-align: center; }
 .outer {
     width: 100vw;
     margin-bottom: 350px;
+    position: absolute;
+    margin-top: 200px;
+    height: calc(100vh - 550px);
 }
 #background img {
     width: 100vw;
@@ -44,4 +48,14 @@ h2 { text-align: center; }
     margin-bottom: -11px;
     bottom: 0;
     position: absolute;
+}
+
+#rightcolor {
+    position: absolute;
+    background: rgb(234, 234, 234);
+    opacity: 0.4;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 40vw;
 }
